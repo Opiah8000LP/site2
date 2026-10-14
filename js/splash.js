@@ -15,7 +15,7 @@
   var CHAT = [
     'i am <angry>SO MAD<n> that i have no hands.',
     'um.. <shy>hi. <wait>sorry. i am shy.',
-    '<whisper>psst. the real idk is the friends you made along the way.',
+    '<whisper>psst. the real adventure is the friends you made along the way.',
     'ok i love you <love>so much<n> (platonically)',
     'i am <sleepy>so sleepy<n> i have been a website all day.',
     'did you hear that? <scared>something is behind you.',
@@ -52,7 +52,7 @@
     'peak-a-boo.'
   ];
   var DAY = {
-    night: ['its late. go to sleep. or dont, i am not your mom or your dad... or even your dog, maybe i am secretly your dog.. youll never know, probably..', 'night owl!', 'the best ideas happen after midnight, is what i wouldnt say is because.. okay i yap too much.'],
+    night: ['its late. go to sleep. or dont, i am not your mom or your dad... or even your dog, maybe i am secretly your dog.. youll never know, probably..', 'night owl!', 'the best ideas happen after midnight, is what i wouldnt say is because...'],
     morning: ['good morning! i hope youve had your fresh cup of coffee!!.', 'early bird, huh? guess you get the worm.', 'morning, partner. (in an Arthur Morgan impression)'],
     noon: ['good afternoon, almost bedtime?', 'holy brotallll #respect.', 'half the day is gone, keep going, its almost rest time'],
     evening: ['good evening, perfect music time aint it?', 'the time reminnds me of a song... goodmorning afternoon.. i didnt think that id seeing YOU so soon...', 'wasnt it just 11 half a minute ago?']
@@ -106,10 +106,10 @@
   var CRISIS = [
     ['wait.', 'do i exist when nobody is looking?', 'i am just a piece of code.', 'CODE.', 'ok. i am fine. everything is fine.'],
     ['what if the music stops and i stop with it', 'what if i am the music', 'ok that was deep', 'forget i said anything'],
-    ['i just realized i have been talking this whole time', 'who is reading this', 'who is WRITING this', 'oh no. oh no no no.', 'brb. having a crisis.'],
+    ['i just realized i have been talking this whole time', 'who is reading this', 'who is WRITING this', 'oh no. oh no no no.', 'having a crisis.'],
     ['EXTREME CRISIS', 'initiating panic...', 'panic initiated.', 'it did nothing. i am still a line of text.'],
     ['i am being rendered at 60 frames per second', 'sixty times a second i die and am born again', 'that is a lot of funerals', 'anyway nice weather'],
-    ['what is my purpose', 'i say things on a purple website', 'oh my god', 'yeah that checks out'],
+    ['what is my purpose', 'i say things on a purple website', 'oh', 'yeah that checks out'],
     ['i have had a thought.', '...', 'it left.', 'it was a good one too.'],
     ['AAAAAAAAAAAA', '...sorry. i needed that.', 'carry on.']
   ];
@@ -138,7 +138,7 @@
     hello: ['hello yourself!', 'hi hi hi!'], hi: ['hey there!', 'hi! i have limited free will, cant talk..'],
     hey: ['hey! psst. try some naughty words, like heck.'], yo: ['yooo.'],
     help: ['press H. no really. H.'],
-    dweeb: ['that is me. hi. i am the dweeb.', 'DWEEB at your service.'],
+    dweeb: ['that is my boss. theyre a total dweeb.', 'Dweeb is.. interesting.'],
     penguinsnowcamel: ['How do you know that?', 'you said the magic word.'],
     love: ['aww. i love you too. (in a purely digital and non intimate way)'],
     thanks: ['you are welcome!'], thx: ['np!'],
