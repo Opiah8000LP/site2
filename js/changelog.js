@@ -1,42 +1,17 @@
 (function () {
   var DW = window.DW, C = (DW.changelog = {});
 
-  // ADD A NEW ENTRY AT THE TOP every time you update the site. newest first.
-  // v: version text, date: optional, title: one line, items: what changed (plain text)
   C.entries = [
-    { v: '1.7', date: '13 OCT 2026', title: 'Settings', items: [
-      'New SETTINGS button: change the site colours, how much it reacts to the music, and more. Works on phones too',
-      'Music options: start muted, autoplay on or off, skip the intro automatically',
-      'Chat bot on or off and how chatty it is, jump scares on or off, eyes, trophy sound and a light power mode',
-      'Everything is saved on your own device, so it is still there when you come back',
-      'New trophy for tinkering with the settings, and a new song in the playlist'
-    ] },
-    { v: '1.6', date: '13 OCT 2026', title: 'Little secrets', items: [
-      'New hidden secrets, on phones too. Poke around, tap things, hold things',
-      '7 new secret trophies, 3 of them only exist during their season',
-      'Trophies come in exactly five tiers: bronze, silver, gold, platinum and rare',
-      'Seasons only show up in their own month now. Come back then.'
-    ] },
-    { v: '1.5', date: '12 OCT 2026', title: 'Spooky season', items: [
-      'Seasons now last the whole month (October = Halloween, December = Christmas, February = Valentine)',
-      'Halloween: a spider on a thread. Click it and it falls and climbs back. Sometimes it escapes... do not click it',
-      'Christmas: a tree with 3 light shows when you click it',
-      'The top bar now says what is going on instead of a version number, and this changelog was added'
-    ] },
-    { v: '1.4', title: 'Living text', items: [
-      'The chat bot can now show 20 emotions: angry, shy, sad, happy, excited, scared, whisper, yell, sleepy, love, silly, spooky, dizzy, glitch, cold, rich, sneaky, nervous, proud, sing',
-      'Type "emotions" to see them all',
-      'New purple, magenta and blue colour theme',
-      'The selected menu label now fades in instead of sitting in a box'
-    ] },
-    { v: '1.3', title: 'Games and trophies', items: [
-      'GAMES: Rhythm (plays your own songs), Snake, Pong, Tetris, Breakout and 2048, each with modes',
-      'TROPHIES: lots to unlock, some of them secret, plus a save data screen',
-      'The visitor eyes can wake up and follow your cursor',
-      'Seasonal decorations and month lines from the chat bot'
-    ] },
-    { v: '1.0', title: 'DWEEB RECORDS opens', items: [
-      'The music player with a beat reactive background, lyrics from the chat bot and the menu of categories'
+    { v: '1.0', date: '14 OCT 2026', title: 'DWEEB RECORDS is open', items: [
+      'Theres a music player with a reactive background, a few lyrics from the chat bot and a menu of categories, no links yet tho.',
+      'GAMES!! Rhythm is basically just guitar hero, snake, pong, tetris, breakout and 2048, each with modes',
+      'TROPHIES in five tiers, bronze, silver, gold, platinum and rare. Some are secret, and there is a save data screen',
+      'Settings let you change the colours, how much the site reacts to the music, mute the music on start, skip the intro and more, It is saved on your device!',
+      'A chat bot with 20 emotions, type "emotions" to see them all, and watch what it says, this feature only works for keyboard users tho, soz.',
+      'Seasons last the whole month!',
+      'The visitor eyes can wake up and follow your cursor, if you click/tap it a lot',
+      'A few secrets, no spoilers, there is a famous code that works on phones too, the album cover does not like being held, the chat bot hates being poked, and the mute button hates being smashed, and a few others.. that I wont give hints to!',
+      'So yeah, there are more. Go look around, tap things, hold things, type things'
     ] }
   ];
 
