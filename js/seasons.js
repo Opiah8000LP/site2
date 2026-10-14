@@ -4,27 +4,27 @@
 
   var DAYS = [
     { id: 'valentine', name: '<3 LOVE MONTH <3', from: 201, to: 229, kind: 'hearts', trophy: 'valentine', lines: [
-      'happy valentines day. i love you. (platonically. i am a div.)',
-      'roses are red, my hex codes are purple, you are looking at a website, and honestly thats perfectly normal.',
-      'no date? thats ok. you have me, and this song.'
+      'happy valentines day. i love you. (platonically)',
+      'roses are red, dweebs website is purple, you are looking at the website, and honestly thats perfectly normal.',
+      'no date? thats ok, probably.'
     ] },
     { id: 'halloween', name: 'ITS HALLOWEEN!', from: 1001, to: 1031, kind: 'bats', trophy: 'spooky', lines: [
       'happy halloween! i am dressed as a website.',
       'boo! ...did that work? i have no way of seeing your face.',
-      'the bats are not part of the bit. they live here now.',
+      'the bats they live here now.',
       'trick or treat? i only have text to give.',
-      'spooky season. my scariest feature is the visitor counter.'
+      'spooky season. my scariest feature is the spider.'
     ] },
     { id: 'xmas', name: 'MERRY XMAS!', from: 1201, to: 1230, kind: 'snow', trophy: 'merry', lines: [
       'merry christmas! i got you nothing. i am a text box.',
       'ho ho ho. that is all the christmas i know.',
-      'it is snowing inside the website. dont ask how.',
-      'santa is probably checking if you were naughty. i saw nothing.',
+      'it is snowing inside the website..',
+      'santa is probably checking if you were naughty..',
       'happy holidays! the lights up top are blinking just for you.'
     ] },
     { id: 'newyear', name: 'HAPPY NEW YEAR!', from: 1231, to: 107, kind: 'confetti', trophy: 'newyear', lines: [
       'happy new year! new year, same dweeb.',
-      'resolution: say more weird things. already on it.',
+      'resolution: become someone youre proud of, yes you.',
       'confetti! it is falling because i said so.'
     ] }
   ];
