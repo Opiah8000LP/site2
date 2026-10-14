@@ -27,7 +27,7 @@
   safe('console', function () {
     if (!window.console || !console.log) return;
     console.log('%cDWEEB//OS', 'font:bold 20px monospace;color:#de37e4;background:#2c0a38;padding:4px 10px');
-    console.log('hey. you opened the console. that is either very cool or you are lost.\nthere is a file in js/ called spaghetti.js. it is not loaded. do not ask.\nnothing here is sketchy, i promise. go outside.');
+    console.log('hi!! you opened the console. thats very cool.\nthere is a file in js/ called spaghetti.js..\nnothing here is sketchy, i promise. go outside.');
   });
 
   safe('clock', function () {
