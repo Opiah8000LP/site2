@@ -14,7 +14,6 @@ addEventListener('error', function (e) {
   var t = e.target;
   if (!t || t.tagName !== 'SCRIPT') return;
   var src = (t.getAttribute('src') || '').replace(/\?.*$/, '');
-  // only our own files count. scripts injected by browser extensions (blob:, chrome-extension: ...) are blocked by the csp and are not your fault
   if (/^js\/[\w.-]+\.js$/.test(src)) window.__miss.push(src);
 }, true);
 
