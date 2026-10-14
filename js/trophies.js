@@ -46,7 +46,6 @@
   ];
   var BD = (DW.eggs && DW.eggs.birthday) || null;
   if (BD && BD.m && BD.d) DEFS.splice(DEFS.length - 1, 0, { id: 'birthday', name: 'CAKE DAY', desc: 'Visit on a very special day.', tier: 'gold', secret: true });
-  // exactly five tiers, nothing else is allowed. anything unknown becomes bronze.
   var TIERS = { bronze: 'BRONZE', silver: 'SILVER', gold: 'GOLD', plat: 'PLATINUM', rare: 'RARE' };
   DEFS.forEach(function (d) { if (!TIERS[d.tier]) d.tier = 'bronze'; });
   var byId = {};
@@ -67,7 +66,6 @@
     if (txt !== undefined) e.textContent = txt;
     return e;
   }
-  // trophy pictures are the tier files in icons/ (bronze, silver, gold, plat, rare) and icons/locked.png
   function icon(d, locked) {
     var i = new Image(), tries = locked ? ['icons/locked.png'] : d.tier === 'plat' ? ['icons/plat.png', 'icons/platinum.png'] : ['icons/' + d.tier + '.png'];
     i.className = 'tr-ic';
@@ -160,7 +158,6 @@
     } catch (e) { wanted = Date.now(); }
   }
   function sound() { if (DW.set && DW.set.get('sfx') === false) return; prep(); fire(); }
-  // the browser blocks sounds before the first click or key. load it on the first one and play it if one was waiting
   function gesture() { prep(); if (wanted && Date.now() - wanted < 8000) { wanted = 0; fire(); } }
   addEventListener('pointerdown', gesture, true);
   addEventListener('keydown', gesture, true);
