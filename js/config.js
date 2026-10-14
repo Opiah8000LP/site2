@@ -8,7 +8,7 @@ if (DW.low) document.documentElement.classList.add('low');
 
 DW.respectReducedMotion = false;
 
-DW.counter = { code: '', skipKey: 'dweeb-skip' };
+DW.counter = { code: 'rdweeb', skipKey: 'dweeb-skip' };
 
 DW.trophyCfg = { sfx: 'audio/trophy.mp3', volume: 0.8 };
 
@@ -16,12 +16,9 @@ DW.eyesPet = { after: 15, chance: 0.04 };
 
 DW.seasons = { on: true };
 
-// pictures for the top bar buttons. leave '' for none (then nothing is requested, so no 404 in the console).
-// the trophy pictures are fixed: icons/bronze.png silver.png gold.png plat.png rare.png locked.png
 DW.icons = { games: 'icons/games.png', trophies: '', changelog: '', settings: '' };
 
-// little secrets. birthday: fill in { m: month 1-12, d: day } to unlock the CAKE DAY trophy and a birthday message that day.
-DW.eggs = { birthday: null };
+DW.eggs = { birthday: { m: 7, d: 1 } };;
 
 DW.menu = [
   { id: 'identity', subs: { bio: '', manifesto: '', persona: '' } },
@@ -90,9 +87,6 @@ DW.splash = {
     'Did you know?',
     'Woah look i can speak mom!',
     'Eat the frog. Now.',
-
-    // EMOTIONS: put <name> before the words you want to change. it lasts until the next tag,
-    // <n> goes back to normal, <wait> pauses the typing. full list in the README.
     'HELLO <angry>WORLD',
     'Hello <shy>world... <wait>sorry',
     'I have <sad>never<n> seen the sun <sleepy>zzz',
