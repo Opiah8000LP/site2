@@ -3,7 +3,7 @@
   var DM = 'DM me this achievement being unlocked and I might give you a prize';
 
   var DEFS = [
-    { id: 'welcome', name: 'HELLO WORLD', desc: 'Step inside the site.', tier: 'bronze' },
+    { id: 'welcome', name: 'HELLO WORLD', desc: 'Enter the site.', tier: 'bronze' },
     { id: 'dj', name: 'FULL ALBUM', desc: 'Listen to every song on the playlist.', tier: 'gold', goal: function () { return DW.tracks.length; } },
     { id: 'tourist', name: 'TOURIST', desc: 'Open every site in the menu.', tier: 'gold', goal: function () { return subCount(); } },
     { id: 'hopper', name: 'CHANNEL SURFER', desc: 'Visit every category.', tier: 'silver', goal: function () { return DW.menu.length; } },
@@ -13,7 +13,7 @@
     { id: 'arcade', name: 'ARCADE KID', desc: 'Play every game in the games tab.', tier: 'silver', goal: function () { return DW.games ? DW.games.list.length : 6; } },
     { id: 'snake15', name: 'SNAKE CHARMER', desc: 'Eat 15 apples in one Snake run.', tier: 'bronze' },
     { id: 'tetris10', name: 'LINE COOK', desc: 'Clear 10 lines in one Tetris game.', tier: 'bronze' },
-    { id: 'pongwin', name: 'PONG PRO', desc: 'Beat the CPU in Pong.', tier: 'bronze' },
+    { id: 'pongwin', name: 'PONG PRO', desc: 'Beat your CPU in Pong.', tier: 'bronze' },
     { id: 'breakout', name: 'BRICK BREAKER', desc: 'Clear every brick in Breakout.', tier: 'silver' },
     { id: 'fivetwelve', name: 'FIVE TWELVE', desc: 'Make a 512 tile in 2048.', tier: 'silver' },
     { id: 'rhythm', name: 'ON BEAT', desc: 'Finish a song in the rhythm game.', tier: 'bronze' },
