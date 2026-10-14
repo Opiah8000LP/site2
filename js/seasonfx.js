@@ -1,4 +1,4 @@
-// extra decorations per season (DOM based). seasons.js decides WHICH season it is, this file builds the things.
+// extra decorations per season
 (function () {
   var DW = window.DW, F = (DW.seasonfx = {});
   var NS = 'http://www.w3.org/2000/svg', root;
@@ -25,7 +25,7 @@
     parent.appendChild(r);
     return r;
   }
-  // pixel art from rows of characters. pal maps a character to a colour, '.' is empty
+  // pixel art of characters
   function pixels(rows, pal, parent, cls) {
     var s = svg(rows[0].length, rows.length, parent, cls);
     rows.forEach(function (row, y) {
@@ -36,11 +36,9 @@
   function trophy(id) { try { if (DW.trophy) DW.trophy.award(id); } catch (e) {} }
   function say(t) { try { if (DW.splashUI && DW.splashUI.say) DW.splashUI.say(t); } catch (e) {} }
 
-  /* your own images */
-  // everything here comes from seasons/ (png + gif) and audio/jumpscare.mp3. a missing file just shows nothing.
   var cfg = DW.seasonFx || {};
   var DIR = cfg.dir || 'seasons/';
-  var SCARE_CHANCE = cfg.runChance >= 1 ? cfg.runChance : 9;       // 1 in N clicks, the spider falls off and runs
+  var SCARE_CHANCE = cfg.runChance >= 1 ? cfg.runChance : 9;
   var SCARE_SFX = cfg.jumpscare === undefined ? 'audio/jumpscare.mp3' : cfg.jumpscare;
   var SCARE_VOL = cfg.volume >= 0 && cfg.volume <= 1 ? cfg.volume : 0.9;
 
@@ -57,7 +55,7 @@
     if (parent) parent.appendChild(i);
     return i;
   }
-  function restart(i, name, fallback) {      // new url each time so a gif starts from its first frame
+  function restart(i, name, fallback) {
     i.style.visibility = '';
     i.dataset.f = fallback || '';
     i.src = DIR + name + '?' + Date.now();
@@ -102,7 +100,6 @@
       raf = requestAnimationFrame(tick);
     }
 
-    // the spider drops off its thread and scurries around the screen. click it if you dare
     function breakFree() {
       state = 'run';
       var r = body.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
@@ -198,7 +195,6 @@
     });
   }
   function webs() {
-    // one corner image (upper left). the other corners are the same png flipped by css
     ['tl', 'tr', 'bl', 'br'].forEach(function (c) { pic('web.png', 'web ' + c, root); });
     var note = mk('div', 'web-note', root);
     note.textContent = 'idk how to fix it, ignore for now, too lazy to remove';
@@ -259,7 +255,7 @@
     mk('div', 'streamers', root);
   }
 
-  /* new year fireworks (drawn on the particle canvas) */
+  /* new year fireworks */
   var rockets = [], sparks = [], nextRocket = 0;
   var FWC = ['#de37e4', '#ffd34d', '#5a87d0', '#6cf0a0', '#ffffff', '#ff6b8a'];
   function fireworks(c, t, w, h, d) {
@@ -304,7 +300,6 @@
   };
 })();
 
-// hook into seasons.js without editing it
 (function () {
   var DW = window.DW, S = DW.season, F = DW.seasonfx;
   if (!S) return;
