@@ -53,7 +53,7 @@
     section(help, 'TOUCH', TOUCH);
     var tip = document.createElement('p');
     tip.className = 'tip';
-    tip.textContent = 'the address bar remembers where you are (like #work/music). send that link and it opens on the same item.';
+    tip.textContent = 'the address bar remembers where you are (like #work/music).';
     help.body.appendChild(tip);
 
     var hb = document.createElement('button');
