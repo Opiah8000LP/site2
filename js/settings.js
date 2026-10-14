@@ -1,16 +1,13 @@
-// settings: what visitors can change, saved on their own device (localStorage, key dw-set).
-// loaded right after config.js so the early switches (intro, chat bot, power mode) apply before anything starts.
 (function () {
   var DW = window.DW, S = (DW.set = {});
   var KEY = 'dw-set';
 
-  // every setting: default value + what is allowed. anything else in storage is ignored.
   var DEF = {
-    hue: 0, sat: 100, bri: 100,                  // colours
-    master: 100, sens: 100, parts: 100, glow: 100, still: false,   // reactivity
-    muteStart: false, autoplay: true,            // music
-    skipIntro: false,                            // intro video
-    bot: true, chat: 'normal',                   // chat bot
+    hue: 0, sat: 100, bri: 100,
+    master: 100, sens: 100, parts: 100, glow: 100, still: false,
+    muteStart: false, autoplay: true,
+    skipIntro: false,
+    bot: true, chat: 'normal',
     seasonfx: true, scare: true, pet: true, sfx: true, perf: 'auto'
   };
   var LIM = { hue: [-180, 180], sat: [30, 140], bri: [60, 120], master: [0, 200], sens: [50, 200], parts: [0, 200], glow: [0, 200] };
@@ -50,16 +47,12 @@
     subs.forEach(function (f) { try { f('*'); } catch (e) {} });
   };
 
-  // switches that have to be set before the other scripts start
   var perf = S.get('perf');
   if (perf === 'on') { DW.low = true; document.documentElement.classList.add('low'); }
   else if (perf === 'off') { DW.low = false; document.documentElement.classList.remove('low'); }
 
-  if (S.get('skipIntro')) DW.intro = DW.intro || {};   // boot.js reads S.get('skipIntro')
-
-  // colours
-  // the whole stylesheet is recoloured by shifting hue / saturation / brightness of every colour in it.
-  // greys, whites, golds and reds (trophy gold, alerts) are left alone.
+  if (S.get('skipIntro')) DW.intro = DW.intro || {};
+  
   var items = null;
   var COL = /#[0-9a-fA-F]{8}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b|rgba?\([^)]*\)/g;
 
@@ -108,8 +101,8 @@
   }
   function shift(rgb, dh, ds, db) {
     var a = toHsl(rgb[0], rgb[1], rgb[2]), h = a[0], s = a[1], l = a[2];
-    if (s < 0.08) return rgb;                               // greys and white
-    if (s > 0.45 && (h <= 70 || h >= 335)) return rgb;      // golds, oranges, reds, hot pinks
+    if (s < 0.08) return rgb;
+    if (s > 0.45 && (h <= 70 || h >= 335)) return rgb;
     h += dh;
     s = Math.min(1, s * ds);
     l = Math.min(0.97, l * db);
@@ -151,7 +144,6 @@
     var x = hex.replace('#', ''), o = shift([parseInt(x.slice(0, 2), 16), parseInt(x.slice(2, 4), 16), parseInt(x.slice(4, 6), 16)], S.get('hue'), S.get('sat') / 100, S.get('bri') / 100);
     return '#' + hex2(o[0]) + hex2(o[1]) + hex2(o[2]);
   };
-  // a swatch colour for the presets, computed from the site's main pink
   S.swatch = function (dh, ds, db) {
     var o = shift([222, 55, 228], dh, ds / 100, db / 100);
     return '#' + hex2(o[0]) + hex2(o[1]) + hex2(o[2]);
@@ -177,7 +169,7 @@
     ['PURPLE', 0, 100, 100], ['PINK', 25, 100, 105], ['RED', 65, 100, 100], ['ORANGE', 100, 100, 100],
     ['GREEN', 170, 90, 100], ['TEAL', -130, 95, 100], ['BLUE', -80, 100, 105], ['DARK', 0, 85, 72]
   ];
-  var NEED = { skipIntro: 1, perf: 1 };   // these need a reload to take effect
+  var NEED = { skipIntro: 1, perf: 1 };
   var note;
 
   function el(tag, cls, text) {
