@@ -57,7 +57,6 @@
 
   function pick() {
     var now = new Date(), v = val(now.getMonth(), now.getDate()), i, d;
-    // for testing only: DW.seasons = { force: 'halloween' } in config.js shows a season on any day (no trophy)
     if (cfg.force) {
       for (i = 0; i < DAYS.length; i++) if (DAYS[i].id === cfg.force) { S.forced = true; return DAYS[i]; }
     }
@@ -140,7 +139,6 @@
     c.globalAlpha = 1;
   };
 
-  // switch to a season (or none). manual = picked by typing its name, which never gives the trophy
   S.set = function (id, manual) {
     var i, d = null;
     for (i = 0; i < DAYS.length; i++) {
