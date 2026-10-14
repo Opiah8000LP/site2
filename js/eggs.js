@@ -1,4 +1,3 @@
-// secrets that work with a finger as well as a keyboard (taps, long presses, swipes)
 (function () {
   var DW = window.DW, E = (DW.eggs = DW.eggs || {});
   var cfg = {};
@@ -9,7 +8,6 @@
   function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
   function gaming() { return document.body.classList.contains('gaming'); }
 
-  // n taps inside ms milliseconds on the same thing
   function multiTap(target, n, ms, cb) {
     var hits = [];
     target.addEventListener('pointerdown', function () {
@@ -20,7 +18,7 @@
     });
   }
 
-  /* konami, but with a thumb: up up down down left right left right */
+  /* konami */
   var SEQ = ['u', 'u', 'd', 'd', 'l', 'r', 'l', 'r'], seen = [], tx = 0, ty = 0;
   function swipes() {
     addEventListener('touchstart', function (e) { var t = e.changedTouches[0]; tx = t.clientX; ty = t.clientY; }, { passive: true });
