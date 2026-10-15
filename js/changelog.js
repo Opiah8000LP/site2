@@ -2,7 +2,7 @@
   var DW = window.DW, C = (DW.changelog = {});
 
   C.entries = [
-    { v: '1.0', date: '14 OCT 2026', title: 'DWEEB RECORDS is open', items: [
+    { v: '1.0', date: '15 OCT 2026', title: 'DWEEB RECORDS is open', items: [
       'Theres a music player with a reactive background, a few lyrics from the chat bot and a menu of categories, no links yet tho.',
       'GAMES!! Rhythm is basically just guitar hero, snake, pong, tetris, breakout and 2048, each with modes',
       'TROPHIES in five tiers, bronze, silver, gold, platinum and rare. Some are secret, and there is a save data screen',
@@ -11,7 +11,8 @@
       'Seasons last the whole month!',
       'The visitor eyes can wake up and follow your cursor, if you click/tap it a lot',
       'A few secrets, no spoilers, there is a famous code that works on phones too, the album cover does not like being held, the chat bot hates being poked, and the mute button hates being smashed, and a few others.. that I wont give hints to!',
-      'So yeah, there are more. Go look around, tap things, hold things, type things'
+      'So yeah, there are more. Go look around, tap things, hold things, type things',
+      'No links yet sadly, I will update the changelog when I add the rest of the sites!! HELL YEAH!!'
     ] }
   ];
 
