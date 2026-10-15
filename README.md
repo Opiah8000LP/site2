@@ -1,601 +1,251 @@
-# DWEEB//OS
+# DWEEB RECORDS (DWEEB//OS)
 
-> A tiny purple desktop-shaped universe living inside a website.
+A tiny purple operating system for the web: a music player with a beat reactive background, a chat bot with 20 emotions, six games, 39 trophies (a lot of them secret), seasons, a settings page and a visitor eyes counter. Static site for GitHub Pages. No build step, no backend, no tracking beyond an optional GoatCounter. Upload the files and you're live.
 
-DWEEB//OS is a static, interactive website built for GitHub Pages. It has a music player, animated interface, living text, browser-saved trophies, mini-games, seasonal surprises, customization settings, and secrets for visitors to discover.
+Live at https://rdweeb.xyz
 
-There is no build step and no backend. The site is designed to be edited, personalized, and hosted as a static website.
+## Using this as a template
+You are welcome to use this site as the structure for your own. The code is MIT licensed (see `LICENSE`). To make it yours:
 
----
+1. Fork or download the repo and upload it to your own GitHub Pages repo.
+2. Open `js/config.js` and change the menu, the playlist, the chat bot lines and the GoatCounter code (the sections below explain each one).
+3. Replace everything in `icons/`, `covers/`, `audio/`, `video/` and `seasons/` with your own files.
+4. Change the name, description and links in `index.html`, `CNAME`, `robots.txt` and `sitemap.xml`, and delete the `CNAME` file if you do not have a custom domain.
+5. Rewrite `js/changelog.js` and the secrets and trophy lists to your own taste.
 
-## Contents
+Please do not copy the name, the artwork or the music, and please do not leave my name or domain in your copy. A credit link back is appreciated but not required.
 
-- [Project at a glance](#project-at-a-glance)
-- [Feature catalogue](#feature-catalogue)
-- [Keyboard controls](#keyboard-controls)
-- [Trophies and achievements](#trophies-and-achievements)
-- [Secrets and easter eggs](#secrets-and-easter-eggs)
-- [Seasonal events](#seasonal-events)
-- [Personalizing the site](#personalizing-the-site)
-- [Assets and file structure](#assets-and-file-structure)
-- [Save data and privacy](#save-data-and-privacy)
-- [Updates and caching](#updates-and-caching)
-- [Hosting and going live](#hosting-and-going-live)
-- [Credits, copyright, and reuse](#credits-copyright-and-reuse)
-- [Changelog](#changelog)
+## Copyright and credits
+- Code (`index.html`, `404.html`, `sw.js`, `css/`, `js/`): Copyright (c) 2026 RDweeb, released under the MIT license in `LICENSE`. Keep that notice if you reuse the code.
+- Artwork, icons, covers, intro videos, season pictures, sounds and the names DWEEB RECORDS, DWEEB//OS and RDweeb are not part of the license. They are not included in the repo template and may not be reused without permission.
+- Songs in the playlist belong to their artists. They are shown here as a personal playlist, with their names and credits. If you are an artist and want a song removed, contact me and it goes.
+- Lyrics shown by the chat bot: only use lyrics you wrote or have the rights to.
+- Nothing on the site collects personal information. Trophies, scores and settings are stored only in the visitor's own browser. The only outside service is the optional GoatCounter view counter.
 
----
+## Features
+**Music player**
+- Plays your own mp3 files with cover art, a song list, shuffle, loop, volume, mute and a seek bar
+- The whole site reacts to the beat of the song: icons bounce, text ripples, waves move, the background glows and dots float
+- Timed lyrics from the chat bot, written by you per song
+- Remembers the last song and the volume on the visitor's device
+- Media keys and lock screen controls on phones
 
-## Project at a glance
+**The menu**
+- A PlayStation style menu: categories across the top, items underneath, every item is a link you choose
+- Works with arrow keys, mouse, swipe and tap, and the address bar remembers where you are (`#media/games`)
+- Missing icons simply show nothing
 
-| Detail | Information |
-|---|---|
-| Project | DWEEB//OS |
-| Type | Static interactive website |
-| Hosting | GitHub Pages-compatible |
-| Build step | None |
-| Backend | None required |
-| Main configuration | `js/config.js` |
-| Visitor data | Stored locally in the visitor's browser |
-| Main technologies | HTML, CSS, and JavaScript |
+**Boot screen and intro**
+- A download counter while the files load, then an intro video, then the site
+- A very rare second intro video (one in a billion, with its own rare trophy)
+- Skip button, and a visitor setting to skip it automatically
 
-DWEEB//OS is both a personal website and a little playground. Its categories can hold a portfolio, archive, writing, music, games, favorites, ideas, and whatever else the site owner wants to share.
+**Chat bot (the line of text under the top bar)**
+- Talks on its own, says hello and welcome back, comments on the time of day, the month, the song and the idle visitor
+- Reacts to typed words and sings along with the playing song
+- Gets told off for swearing, and gives up on visitors who ignore it
+- 20 emotions with their own look and typing speed, see the table below
+- Type `emotions` on the site to watch it do all of them
 
-## Feature catalogue
+**Games**
+- Rhythm (charts your own songs by listening to them, wrong taps cost accuracy so mashing fails)
+- Snake (classic, wrap, speed, rocks), Pong (easy, normal, hard, 2 player), Tetris (marathon, sprint, ultra), Breakout (classic, hard, zen), 2048 (4x4, 5x5, 3x3)
+- A game takes over the screen and the background effects pause, then come back
+- High scores are saved on the visitor's device
 
-This is a catalogue of the features currently documented in the project. Individual options can be disabled, customized, or left unused in `js/config.js`.
+**Trophies and save data**
+- 39 trophies (40 with the birthday one) in five tiers: bronze, silver, gold, platinum and rare
+- Pop up with a sound, a progress bar for the ones that need counting, and a tier summary
+- A save data tab: time on site, visits, most played song, scores, and a delete button
 
-### Interface and navigation
+**Seasons** (the whole month, only in the real month)
+- February: Valentine's, hearts, bunting and a beating heart
+- October: Halloween, cobwebs in the corners, a spider that drops off its thread and climbs back up, a ghost, and sometimes the spider escapes
+- December: Christmas, a tree with three light shows and snow
+- Dec 31 to Jan 7: New Year, fireworks, confetti and streamers
+- The text next to DWEEB//OS shows the season, and the chat bot has lines for every month
 
-- A desktop-inspired, app-like interface.
-- Ten configurable top-level categories, each with its own subcategories.
-- Category and subcategory icons supplied as PNG files.
-- A generated purple-tile fallback for missing category icons.
-- Optional custom pictures for top-bar buttons.
-- Keyboard navigation with arrow keys, Enter, and other shortcuts.
-- Mobile-friendly interaction, including swipe-based navigation and touch-accessible secrets.
-- URL hashes that can remember the current section, such as `#media/games`.
-- A locked-category placeholder for sections that are not ready to open.
-- Toast messages for menu items without links.
-- Support for external HTTP(S) links and `mailto:` links.
-- A custom intro video, plus a rare alternate intro.
-- A custom site title, description, sharing image, and search-engine metadata.
+**Settings** (saved per device, phones too)
+- Colours: eight presets plus colour, intensity and brightness sliders. The whole site recolours
+- Reactivity: beat reaction, sensitivity, floating dots, glow, calm mode
+- Music: start muted, autoplay on or off, skip intro
+- Chat bot on or off and how chatty it is, seasonal decorations, jump scares, eyes following the cursor, trophy sound and a light power mode
 
-### Intro and personality
+**Eyes**
+- The visitor counter is a pair of eyes. Poke them enough and they wake up, follow your cursor, blink, fall asleep and react to being petted
 
-- A splash intro that introduces the site.
-- A configurable chat bot that speaks on its own.
-- Responses to words typed by visitors.
-- Special responses to certain words and commands.
-- Optional playful scolding lines for swear words.
-- A configurable name in the swear-word response.
-- A chance for the bot to sing along with the currently playing song.
-- Monthly chat lines.
-- Optional email invitation line. Since this address is public, a throwaway address is recommended.
-- Animated text emotions, allowing dialogue to look happy, angry, shy, spooky, sleepy, and much more.
-- Easter eggs that can be triggered by typing certain words.
+**Everything else**
+- Changelog button with a dot for new updates
+- Works on phone and desktop, with a lighter mode for slow phones
+- Update helper (service worker) so new uploads show without a hard refresh
+- SEO: title, description, social preview, sitemap and robots.txt
+- Secure by design: a strict Content Security Policy, no inline scripts or styles, no cookies, and external links are checked before opening
 
-### Music player
+## Trophies
+Secret trophies show ??? until unlocked.
 
-- A configurable playlist with song title, artist, album, and optional lyrics.
-- Individual cover art for songs.
-- Play and pause controls.
-- Next and previous track controls.
-- Seeking through a track.
-- Volume control and mute.
-- Shuffle and loop modes.
-- Fullscreen mode.
-- Optional lyrics that appear line by line.
-- Optional timestamped lyrics using `[m:ss]` prefixes.
-- Bot singing that can follow the selected song's lyrics.
-- Audio-reactive visuals throughout the site.
-- A trophy-unlock sound effect, if a valid `audio/trophy.mp3` is supplied.
-- Support for replacing audio by changing the filename, helping avoid stale browser-cached tracks.
-
-Only use lyrics you wrote yourself or have permission to reproduce.
-
-### Audio-reactive visuals
-
-- Beat-reactive interface elements.
-- Adjustable reaction strength and sensitivity.
-- Floating particles and glow effects.
-- A calm mode for visitors who prefer fewer visual reactions.
-- Power mode in Settings.
-- Visual reactions that can be adjusted to suit the visitor's device and preference.
-
-### Living text and emotions
-
-Any line spoken by the bot can include emotion tags. A tag affects the words after it until another tag or a reset tag appears.
-
-Examples:
-
-- `HELLO <angry>WORLD`
-- `Hello <shy>world`
-- `i am <sad>fine<n> really`
-- `wait for it <wait> <excited>NOW`
-
-Supported emotion tags and aliases:
-
-| Tag | Effect | Aliases |
+| trophy | tier | how |
 |---|---|---|
-| `<angry>` | Red, hard-shaking text | `mad`, `rage`, `furious` |
-| `<shy>` | Tiny, trembling text typed slowly | `timid`, `bashful` |
-| `<sad>` | Blue, drooping text typed slowly | `cry`, `down`, `blue` |
-| `<happy>` | Yellow, bouncing text | `joy`, `glad`, `yay` |
-| `<excited>` | Large, gold, jiggling text typed quickly | `hype`, `yippee` |
-| `<scared>` | Pale text that shivers quickly | `afraid`, `fear`, `terrified` |
-| `<whisper>` | Tiny, faded, italic text typed slowly | `quiet`, `psst`, `secret` |
-| `<yell>` | Huge, pulsing text typed quickly | `loud`, `shout`, `scream` |
-| `<sleepy>` | Dim, swaying text typed very slowly | `tired`, `yawn`, `sleep` |
-| `<love>` | Pink, heartbeat-style text | `heart`, `crush`, `blush` |
-| `<silly>` | Wobbling text with rainbow colours | `goofy`, `wacky`, `derp` |
-| `<spooky>` | Purple glow and flickering | `ghost`, `creepy`, `eerie` |
-| `<dizzy>` | Wavy text | `drunk`, `spin`, `wavy` |
-| `<glitch>` | Monospace text, cyan/magenta split, twitching | `error`, `bug`, `broken` |
-| `<cold>` | Icy-blue, shivering text | `freeze`, `brr`, `chilly` |
-| `<rich>` | Shimmering gold text | `gold`, `fancy`, `shiny` |
-| `<sneaky>` | Small, italic text sliding sideways | `sly`, `plotting`, `smirk` |
-| `<nervous>` | Jittery text | `anxious`, `worried`, `sweat` |
-| `<proud>` | Gold, puffed-up text | `smug`, `boast` |
-| `<sing>` | Blue text bobbing like a melody | `music`, `melody`, `la` |
-
-Use `<n>`, `<normal>`, or `</>` to reset the emotion. `<wait>` pauses the typing effect, and `<wait2>` pauses for twice as long. Unknown tags are displayed as ordinary text.
-
-Type `emotions` on the site to see the bot demonstrate the emotions. To add a new emotion, edit `js/emotion.js` and add the matching `.em-yourname` rule in `css/style.css`.
-
-### Arcade
-
-The **GAMES** button opens a collection of six games:
-
-- Rhythm
-- Snake
-- Pong
-- Tetris
-- Breakout
-- 2048
-
-The arcade takes over the screen while a game is active. The background, particles, and beat reactions turn off during play, while the music player stays available. Leaving a game restores the normal site visuals.
-
-Available game modes documented in the project:
-
-| Game | Modes |
-|---|---|
-| Snake | Classic, Wrap, Speed, Rocks |
-| Pong | Easy, Normal, Hard, 2 Player |
-| Tetris | Marathon, Sprint, Ultra |
-| Breakout | Classic, Hard, Zen |
-| 2048 | 4×4, 5×5, 3×3 |
-| Rhythm | Charts a selected song by listening to its audio file |
-
-Rhythm mode uses audio from `audio/<file>` when a song is selected. Incorrect taps reduce accuracy, so repeatedly pressing keys is not a reliable way to get a perfect result.
-
-Game scores are saved in the visitor's browser. To add a game or mode, use the existing `G.add({...})` pattern in `js/games-arcade.js`.
-
-### Trophies and achievements
-
-- A TROPHIES window with collectible achievements.
-- Bronze, silver, gold, platinum, rare, and locked trophy artwork.
-- Secret achievements that display `???` until unlocked.
-- An unlock sound when a valid trophy sound file is supplied.
-- Browser-local save data, including time on site, visits, most-played song, and scores.
-- A save-data delete option.
-- Seasonal and event-related trophies.
-- A rare one-in-a-billion trophy intended to be verified by a screen recording if someone contacts the site owner.
-
-The exact trigger for every trophy is defined in `js/trophies.js`. Achievement names are catalogued below, but secret triggers are intentionally not revealed here.
-
-### Visitor settings
-
-The **SETTINGS** button opens a customization window. Visitors can change:
-
-- Colour presets.
-- Hue, intensity, and brightness.
-- Beat reaction and sensitivity.
-- Floating dots and glow.
-- Calm mode.
-- Start muted.
-- Autoplay.
-- Skip intro.
-- Chat bot on or off.
-- Chat bot chattiness.
-- Seasonal decorations.
-- Jump scares.
-- Eyes following the cursor.
-- Trophy unlock sound.
-- Power mode.
-
-Settings are stored in the visitor's own browser using `localStorage` under the `dw-set` key. Some settings require a refresh, and the window provides a REFRESH button when needed. Colour changes shift the site's stylesheet while preserving greys, whites, golds, and reds.
-
-### Living visitor counter and eyes
-
-- A visitor-eyes counter can be configured through GoatCounter.
-- The `?me=1` query can be used in your own browser to skip counting your visits.
-- Visitors can click the eyes.
-- After enough clicks, the eyes may wake up.
-- Awake eyes follow the cursor, blink, fall asleep, and react to clicks.
-- The eyes artwork is supplied in `icons/eyes.png`.
-
-### Seasonal decorations and events
-
-- Valentine's Day decorations.
-- Halloween decorations and a spider encounter.
-- Christmas tree interactions.
-- New Year fireworks, confetti, and streamers.
-- Season-specific bot dialogue.
-- Seasonal trophies.
-- Optional Halloween jumpscare image and sound.
-- A force option for previewing a season during development.
-- Seasonal decorations can be disabled in configuration or through visitor settings.
-
-### Changelog and updates
-
-- A CHANGELOG window accessible from the top bar.
-- A blinking indicator when a visitor has not opened the newest changelog entry.
-- A configurable version label beside `DWEEB//OS`.
-- A season label that can replace the normal version label during seasonal events.
-
----
-
-## Keyboard controls
-
-| Key | Action |
-|---|---|
-| Arrow keys or `<` / `>` | Navigate |
-| Enter | Open the selected item |
-| Space | Play or pause music |
-| N / P | Next / previous song |
-| `[` / `]` | Seek backward / forward by 10 seconds |
-| `-` / `+` | Lower / raise volume |
-| M | Mute / unmute |
-| S | Shuffle |
-| L | Loop |
-| F | Fullscreen |
-| H or `?` | Show help |
-
-Letter shortcuts wait approximately 0.3 seconds before firing, reducing the chance that typing a word accidentally activates a control.
-
-## Trophies and achievements
-
-Trophy definitions live near the top of `js/trophies.js`. Set `secret: true` on a trophy to hide its name as `???` until it is unlocked.
-
-### Trophy artwork tiers
-
-Place the following PNG files in `icons/`:
-
-- `bronze.png`
-- `silver.png`
-- `gold.png`
-- `plat.png` or `platinum.png`
-- `rare.png`
-- `locked.png`
-
-Each trophy uses the artwork for its tier. Missing trophy images do not get generated fallbacks.
-
-### Achievement index
-
-The project currently documents these trophy IDs. Some IDs may be secrets, special events, or challenge-specific trophies. Their exact unlock conditions should be checked in `js/trophies.js`.
-
-`welcome`, `dj`, `tourist`, `hopper`, `regular`, `devoted`, `longhaul`, `arcade`, `snake15`, `tetris10`, `pongwin`, `breakout`, `fivetwelve`, `rhythm`, `rhythmS`, `fullcombo`, `twentyfortyeight`, `potty`, `konami`, `alone`, `existential`, `poke`, `alive`, `night`, `commit`, `spooky`, `merry`, `newyear`, `valentine`, `spin`, `ouch`, `mutiny`, `onemore`, `ghosted`, `scare`, `treehug`, `rare`, `plat`, and `birthday` (when a birthday is configured).
-
-### Secret achievements
-
-Some achievements are deliberately hidden until unlocked. The catalogue above does not disclose their secret triggers, and the game itself may reveal them only after a visitor earns them.
-
-If you want to keep a secret achievement truly secret, avoid putting its exact condition in public-facing documentation or in a public changelog. The browser code is still downloadable, so this is a playful discovery system rather than secure anti-cheat protection.
-
-### Birthday trophy
-
-A birthday trophy and message can be configured in `js/config.js` using a month and day:
-
-```js
-birthday: { m: 5, d: 17 }
-```
-
-Use the month number and day number for the date you want to configure. A forced seasonal preview does not award that season's trophy.
-
-### Save data
-
-The TROPHIES window includes a SAVE DATA tab with:
-
-- Time spent on the site.
-- Visit count.
-- Most-played song.
-- Game scores.
-- A delete option for the saved data.
-
-Everything is stored in the visitor's browser. It is not sent to a DWEEB//OS backend. Because the data is local and the source is available to visitors, it can be edited by a determined user.
-
----
-
-## Secrets and easter eggs
-
-DWEEB//OS includes discoverable interactions, including:
-
-- Type `hello`.
-- Type `jams`.
-- Type `sing`.
-- Type `emotions`.
-- Try the Konami code.
-- Hold the album cover.
-- Poke the chat bot's text.
-- Mash the mute button.
-- Loop one song three times.
-- Try the sequence: Up, Up, Down, Down, Left, Right, Left, Right.
-- Find the seasonal ghost.
-- Catch the escaped Halloween spider.
-- Interact with the Christmas tree.
-- Discover the eyes' wake-up behaviour.
-
-Some of these actions are tied to achievements. The exact outcomes can change as the project develops, so treat this list as a trailhead rather than a complete spoiler guide.
-
-## Seasonal events
-
-Season logic lives in `js/seasons.js`, while extra seasonal effects live in `js/seasonfx.js`.
-
-### Seasonal calendar
-
-The current configuration supports these events:
-
-| Event | Decorations |
-|---|---|
-| Valentine's Day | Heart bunting and a large beating heart that can be clicked |
-| Halloween | Cobwebs, spider behaviour, and an optional jumpscare |
-| Christmas | A clickable tree that cycles through image/GIF states |
-| New Year | Fireworks, confetti, and streamers |
-
-The documented full-month schedule is:
-
-- Valentine's Day: all of February.
-- Halloween: all of October.
-- Christmas: December 1–30.
-- New Year: December 31 through January 7.
-
-The dates can be changed near the top of `js/seasons.js`. Seasonal trophies only unlock when the visitor actually visits during the relevant period. For testing, add `force: 'halloween'`, `force: 'xmas'`, `force: 'valentine'`, or `force: 'newyear'` to `DW.seasons` in `js/config.js`, then remove it after testing. A forced season never awards its trophy.
-
-### Halloween assets
-
-Put these files in the `seasons/` folder:
-
-- `web.png`: a cobweb drawn in the upper-left corner. The site flips it for other corners, the player, and windows.
-- `spider.png`: the spider, drawn facing up. The same artwork is used for hanging, falling, climbing, and running.
-- `jumpscare.png`: optional full-screen jumpscare image. If absent, `spider.png` is used instead.
-
-Also supply `audio/jumpscare.mp3` for the jumpscare sound.
-
-The spider has a configurable chance to fall off its thread and run around the screen for roughly 20 seconds. Clicking it triggers the jumpscare, after which the bot laughs. The documented default is one chance in nine per click.
-
-Example configuration:
-
-```js
-DW.seasonFx = {
-  runChance: 9,
-  jumpscare: 'audio/jumpscare.mp3',
-  volume: 0.9,
-  dir: 'seasons/'
-};
-```
-
-### Christmas assets
-
-- `seasons/tree.png`: the default tree image.
-- `seasons/tree1.gif`, `seasons/tree2.gif`, `seasons/tree3.gif`: optional states cycled by clicking the tree.
-
-Missing seasonal images simply do not appear.
-
----
-
-## Personalizing the site
-
-Most customization happens in `js/config.js`.
-
-### Menu and categories
-
-`DW.menu` defines the categories and subcategory items. Items can point to URLs, and an empty link produces a "no link yet" toast. Only HTTP(S) and `mailto:` links are supported. A dash in an item name is displayed as a space, so `reach-out` becomes `REACH OUT`.
-
-A category with `subs: {}` is locked and has nothing to open. A category's `label` can replace the text shown under its icon.
-
-### Playlist
-
-`DW.playlist` maps audio filenames to their metadata. Example shape:
-
-```js
-'music1.mp3': {
-  title: 'Song title',
-  artist: 'Artist name',
-  album: 'Album name',
-  lyrics: ['First line', '[0:12] Second line']
-}
-```
-
-Place the matching cover image at `covers/music1.png`. Lyrics can be an array or a multiline string, with one line per row. A `[m:ss]` prefix can time a lyric line to the song.
-
-### Splash bot
-
-`DW.splash` controls the bot's dialogue and behaviour. Optional settings include `lines`, `scolds`, `every`, `singChance`, and `mailChance`. Leave `email: ''` unless you want the public email invitation line. The email address will be visible to all visitors.
-
-### Visitor counter
-
-Set `DW.counter.code` to your GoatCounter site code. Add `?me=1` to your own site URL to skip counting your visits in that browser.
-
-### Trophy sound
-
-Set the trophy sound path and volume in `DW.trophyCfg` in `js/config.js`. The default expected file is `audio/trophy.mp3`. It must be a real MP3 file. If playback fails, check the browser console with F12. Browsers may block sound until the visitor first clicks or presses a key.
-
-### Settings defaults
-
-Default visitor settings live near the top of `js/settings.js` in `DEF`. Values from your own configuration are the starting point; visitors can override them on their own device.
-
-### Adding a new emotion
-
-Add a row to `js/emotion.js` with the emotion's name, typing speed, and aliases. Then add its visual style as `.em-yourname` in `css/style.css`.
-
-### Adding a game or mode
-
-Use an existing `G.add({...})` block in `js/games-arcade.js` as the pattern to follow.
-
-### Changelog entries
-
-Add new entries to the top of the `C.entries` list in `js/changelog.js`. Visitors see a blinking dot until they open the newest entry.
-
----
-
-## Assets and file structure
-
-The site is static, so filenames and paths matter.
-
-### Core files
-
-- `index.html`: main page and site metadata.
-- `404.html`: GitHub Pages fallback page.
-- `sw.js`: service worker and cache update logic.
-- `.nojekyll`: GitHub Pages configuration helper.
-- `CNAME`: custom domain configuration, if used.
-- `robots.txt` and `sitemap.xml`: search-engine discovery files, if used.
-- `css/style.css`: site styling.
-- `js/*.js`: site features and configuration.
-- `icons/`: category, subcategory, top-bar, and trophy artwork.
-- `audio/`: music, trophy sound, and seasonal sound effects.
-- `covers/`: music cover art.
-- `video/`: intro videos.
-- `seasons/`: seasonal artwork.
-
-### Music and video files
-
-- `audio/music1.mp3` through `audio/music8.mp3`, or whatever filenames your playlist uses.
-- `audio/trophy.mp3`: optional trophy-unlock sound.
-- `audio/jumpscare.mp3`: optional Halloween jumpscare sound.
-- `covers/music1.png` and matching cover images for each playlist track.
-- `video/intro.mp4`: main intro.
-- `video/intro2.mp4`: rare alternate intro.
-
-The names in `DW.playlist` must match the real files. Each cover should use the same base filename as its corresponding song.
-
-### Icons
-
-Use `icons/<id>.png` for category and subcategory icons. The currently documented examples include:
-
-`identity`, `bio`, `manifesto`, `persona`, `projects`, `portfolio`, `archive`, `stack`, `gallery`, `art`, `audio`, `clips`, `writing`, `essays`, `notes`, `media`, `library`, `games`, `reviews`, `curation`, `favorites`, `playlists`, `inspirations`, `ideas`, `concepts`, `wishlists`, `mindset`, `opinions`, `lore`, `contact`, `reach-out`, `faq`, and `locked`.
-
-Also provide `icons/eyes.png` and the trophy-tier pictures listed above. Optional top-bar button pictures can be configured through `DW.icons` in `js/config.js`.
-
-Missing category icons can fall back to generated purple tiles. Missing trophy and seasonal PNGs do not get generated fallbacks.
-
----
-
-## Save data and privacy
-
-DWEEB//OS does not require a backend for its documented features.
-
-- Settings are saved in the visitor's browser using `localStorage` under `dw-set`.
-- Trophy and game data are saved in the visitor's browser.
-- The documented save data is not sent to a DWEEB//OS server.
-- Browser-local data is per device/browser and may not follow a visitor to another device.
-- Visitors can delete their trophy/save data through the SAVE DATA tab.
-- Since local data is stored on the visitor's device and the site code is public, a determined visitor can edit it.
-
-If you add third-party analytics, external services, or other data collection later, update this section to explain what is collected and link to the relevant provider's privacy information.
-
----
-
-## Updates and caching
-
-The service worker in `sw.js` checks whether files have changed before using saved copies. This is intended to make updates appear on the next visit instead of waiting for the usual GitHub Pages cache delay.
-
-- On the very first visit after adding the service worker, visitors may need to load the new `index.html` and `js/guard.js` once. A hard refresh or waiting up to around 10 minutes may be necessary.
-- Pressing F5 in an already-open tab can still reuse files from memory.
-- Closing and reopening the tab, or using Ctrl+F5, should load the newest version.
-- Audio and video use Range requests that bypass the service worker. Replacing an MP3 while keeping the same filename can leave an old copy cached for up to around 10 minutes. Use a new filename when replacing a track.
-
-### Important when updating
-
-Do not overwrite your personalized versions of these files and folders when updating the project:
-
-- `js/config.js`
-- `icons/`
-- `audio/`
-- `covers/`
-- `video/`
-
-Back up your customizations before replacing core files.
-
----
-
-## Hosting and going live
-
-DWEEB//OS is designed for static hosting such as GitHub Pages.
-
-1. Upload the project files to your repository.
-2. Enable GitHub Pages for the repository.
-3. Confirm that `index.html` and the asset folders are in the expected locations.
-4. Add a `CNAME` file if using a custom domain.
-5. Configure `robots.txt` and `sitemap.xml` if you want search engines to discover the site.
-6. Create `og.png` in the repository root at **1200 × 630 pixels** for link previews.
-7. Update the `<title>`, meta description, and JSON-LD block in `index.html`.
-8. Add your GoatCounter site code to `DW.counter.code` in `js/config.js`, if using GoatCounter.
-9. Visit the published site on both desktop and mobile and test the controls, links, audio, settings, and seasonal behaviour.
-
-No build command is required.
-
----
-
-## Credits, copyright, and reuse
-
-### Copyright
-
-Unless a file says otherwise, the original DWEEB//OS source code, visual design, written content, original artwork, and project-specific assets are © their respective creator(s). Third-party assets remain the property of their respective owners and are subject to their own licences.
-
-**Please do not assume every file has the same licence.** If you plan to publish this repository with a specific open-source licence, add the appropriate `LICENSE` file and make sure it matches the permissions you actually want to grant.
-
-### You can use this project as a reference
-
-If DWEEB//OS gives you ideas for your own website, you're welcome to learn from its structure and use the project as inspiration. You can study how its files are organized, learn from its approach, and build your own site with your own identity.
-
-A good way to make your version your own:
-
-- Keep the general idea of a customizable, app-like personal website if it suits your project.
-- Write your own text and dialogue.
-- Make your own visual identity, icons, music, and artwork, or use assets with suitable licences.
-- Change the categories, interactions, layout, and features to fit your needs.
-- Check the licence of any code or asset you want to copy directly.
-- Give credit when you reuse code, artwork, writing, or other material where the licence or creator asks for attribution.
-
-### Please respect the original work
-
-- Do not claim DWEEB//OS assets, writing, or original artwork as your own.
-- Do not remove existing copyright or licence notices from material you reuse.
-- Do not redistribute third-party music, images, fonts, or other assets unless their licences allow it.
-- If you publish a direct fork or a close derivative, clearly explain what you changed and retain any required notices.
-- Inspiration is encouraged; copying protected assets or presenting another person's work as your own is not the same thing.
-
-This README is documentation, not a substitute for a software licence. If you want to allow people to copy, modify, and redistribute the source code under clear terms, choose a licence and include it in the repository. Until then, do not describe the entire project as public domain or freely licensed.
-
-### Suggested attribution
-
-If you reuse parts of DWEEB//OS, a simple credit is appreciated:
-
-> Inspired by DWEEB//OS, a personal interactive website by DWEEB: [link to the original project].
-
-Replace the placeholder with the actual public URL before publishing this attribution.
-
----
+| HELLO WORLD | bronze | Step inside the site |
+| FULL ALBUM | gold | Listen to every song on the playlist |
+| TOURIST | gold | Open every site in the menu |
+| CHANNEL SURFER | silver | Visit every category |
+| REGULAR | silver | Visit the site 5 times |
+| DEVOTED | gold | Visit the site 20 times |
+| SETTLE IN | silver | Stay for 30 minutes in one visit |
+| ARCADE KID | silver | Play every game in the games tab |
+| SNAKE CHARMER | bronze | Eat 15 apples in one Snake run |
+| LINE COOK | bronze | Clear 10 lines in one Tetris game |
+| PONG PRO | bronze | Beat the CPU in Pong |
+| BRICK BREAKER | silver | Clear every brick in Breakout |
+| FIVE TWELVE | silver | Make a 512 tile in 2048 |
+| ON BEAT | bronze | Finish a song in the rhythm game |
+| PERFECT TIMING | gold | Get an S rank in the rhythm game |
+| TINKERER | bronze | Change 5 different settings |
+| PLATINUM | platinum | Earn every trophy (except the one in a billion) |
+
+### Secret trophies
+| trophy | tier | how |
+|---|---|---|
+| NOT A SINGLE MISS | gold | Finish a rhythm song without missing a note |
+| THE BIG ONE | gold | Make a 2048 tile |
+| POTTY MOUTH | bronze | Swear at the chat bot |
+| OLD SCHOOL | silver | The Konami code. On a keyboard: up up down down left right left right B A. On a phone: swipe up up down down left right left right. You also get +30 lives |
+| LEFT ON READ | bronze | Ignore the chat bot until it gives up on you |
+| EXISTENTIAL DREAD | bronze | Watch the chat bot have a crisis (it happens at random) |
+| POKE | bronze | Click the visitor eyes 15 times |
+| IT IS ALIVE | gold | Wake up the eyes (after enough pokes it has a small chance on every click) |
+| NIGHT OWL | bronze | Visit between 2am and 5am |
+| COMMITMENT ISSUES | bronze | Pause the music 10 times |
+| RIGHT ROUND | bronze | Hold the album cover for about a second |
+| THAT IS MY FACE | bronze | Poke the chat bot's text until it complains (9 pokes) |
+| MAKE UP YOUR MIND | bronze | Mash the mute button (8 times in 6 seconds) |
+| ONE MORE TIME | silver | Let one song loop three times |
+| SPOOKY SEASON | silver | Visit in October |
+| GHOSTED | silver | Catch the ghost in October |
+| JUMPSCARED | gold | Catch the escaped spider in October (it is a 1 in 9 chance each time you click the spider) |
+| MERRY VISITOR | silver | Visit in December |
+| TREE HUGGER | silver | Click the Christmas tree 10 times |
+| NEW YEAR NEW YOU | silver | Visit at New Year |
+| LOVE IS IN THE AIR | silver | Visit in February |
+| CAKE DAY | gold | Visit on your own birthday (set in `config.js`, only appears if you set one) |
+| ONE IN A BILLION | rare | See the second intro. One visit in a billion. Ask for a screen recording when someone DMs you |
+
+Season trophies only unlock in the real month and never with the preview `force` option.
+
+## What you edit
+Almost everything is in `js/config.js`:
+- `DW.menu`: the 10 categories and their items. `'name': 'https://link'`. Empty link = "no link yet" toast. Only http(s) and mailto links work. A dash shows as a space (`'reach-out'` becomes REACH OUT). `label` replaces the text under a category icon. A category with `subs: {}` has nothing to open
+- `DW.playlist`: `'music1.mp3': { title, artist, album, lyrics }`. The cover is `covers/music1.png`
+- `DW.splash`: the chat bot (see below)
+- `DW.counter.code`: your GoatCounter code for the eyes counter (`?me=1` once on your own browser to skip your visits)
+- `DW.icons`: optional pictures for the top bar buttons. Leave `''` for none, then nothing is requested
+- `DW.eggs`: `{ birthday: { m: 5, d: 17 } }` (month, day) turns on the birthday message and trophy
+- `DW.seasons`: `{ on: false }` turns all seasons off. `{ force: 'halloween' }` previews one (`xmas`, `valentine`, `newyear`), remove it afterwards
+- `DW.seasonFx`: `{ runChance: 9, jumpscare: 'audio/jumpscare.mp3', volume: 0.9, dir: 'seasons/' }`
+- `DW.trophyCfg`: the trophy sound file and volume
+- `DW.intro` and `DW.intro2`: the intro videos
+
+Icons are `icons/<name>.png` (for example `icons/bio.png`, `icons/reach-out.png`). Intro video is `video/intro.mp4`.
+
+**When updating, do not overwrite:** `js/config.js`, `icons/`, `audio/`, `covers/`, `video/`, `seasons/`.
+
+## Updates without a hard refresh
+`sw.js` (a service worker) asks the server "did this change?" for every file before using its saved copy, so uploads show up on the next visit instead of after GitHub's 10 minute cache.
+- The very first time, visitors need the new `index.html` and `js/guard.js` once (hard refresh, or wait up to 10 minutes) before the worker installs
+- Pressing plain F5 in an already open tab can still reuse files from memory. Closing and reopening the tab (or Ctrl+F5) always gets the newest
+- Audio and video use Range requests that bypass the worker, so replacing an mp3 under the same filename can stay stale for up to 10 minutes. Use a new filename
+
+## The chat bot
+It chats on its own, reacts to typed words (swear words get "Woah woah you'll make NickEh30 upset!", change the name with `boss`), and sometimes sings the playing song.
+- `lyrics` on a playlist entry: an array or multi-line string, one line per row. Prefix `[m:ss]` for lines that follow the song in time. Only paste lyrics you wrote or have rights to
+- `email`: leave `''` unless you want the "Want me to say somethin? Email me..." line (a mailto: link). It is public to everyone, so use a throwaway address
+- `lines`, `scolds`, `every`, `singChance`, `mailChance` are all optional
+- Typing also has easter eggs (try `hello`, `jams`, `sing`, `emotions`)
+
+## Keys
+Arrows or `< >` move, Enter opens, Space play/pause, N/P next/prev song, `[ ]` seek 10s, `- +` volume, M mute, S shuffle, L loop, F fullscreen, H or ? help, Esc closes a window. Letter hotkeys wait about 0.3 seconds so typing a word does not trigger them. On a phone: swipe left/right for category, up/down for the list, tap an icon to open it and tap the cover for the song list.
+
+## Settings (js/settings.js)
+The SETTINGS button opens a window where visitors can change the site colours, the reactivity, the music behaviour, the chat bot and the extras (see Features).
+- Saved in the visitor's own browser (`localStorage`, key `dw-set`), per device. Nothing is sent anywhere
+- `js/settings.js` must load right after `config.js` (it already does in `index.html`)
+- Everything changes live except skip intro and power mode, which need a refresh. The window shows a REFRESH button for those
+- The colour change recolours the whole stylesheet by shifting every colour. Greys, whites, golds and reds stay as they are
+- Optional top bar picture: `DW.icons.settings = 'icons/settings.png'`. Left empty it shows the word (SET on phones)
+- The defaults live at the top of `js/settings.js` (`DEF`)
+
+## Seasons
+`js/seasons.js` decides the dates. February = Valentine, October = Halloween, Dec 1-30 = Christmas, Dec 31 to Jan 7 = New Year (change them at the top of the file). `js/seasonfx.js` draws the decorations. Seasons can not be switched by typing. A forced season (`force` in config) never gives the trophy.
+
+Halloween (October), pictures in `seasons/`:
+- `seasons/web.png`: a cobweb drawn in the UPPER LEFT corner. The site flips it for the other three corners, the player and the windows
+- `seasons/spider.png`: the spider (hanging, falling, climbing and running: one picture, drawn facing UP)
+- `seasons/jumpscare.png`: optional, falls back to spider.png. Shown full screen on the jumpscare
+- `audio/jumpscare.mp3`: plays on the jumpscare
+
+One in nine clicks the spider falls off its thread and runs around the screen for about 20 seconds. Click it and you get the jumpscare, then the bot laughs. A cobweb in the top right corner can glitch on some screens, there is a note about it on the site.
+
+Christmas (December): `seasons/tree.png`. Each click switches to `seasons/tree1.gif`, `tree2.gif`, `tree3.gif` and then back to the png.
+
+## Eyes
+Click the visitor eyes enough (`DW.eyesPet.after`) and every click after that has a small chance (`DW.eyesPet.chance`) to wake them up. Awake eyes follow the cursor, blink, fall asleep and react to clicks.
+
+## Trophy files
+- The trophy pictures live in `icons/`: `bronze.png`, `silver.png`, `gold.png`, `plat.png` (or `platinum.png`), `rare.png` and `locked.png`. Every trophy uses the picture of its tier. Rare uses `rare.png`
+- Unlock sound: `audio/trophy.mp3` must be a real mp3. If it cannot play, the browser console (F12) prints why. Browsers block all sound until the first click or key press, so the sound waits for it
+- Trophies are defined at the top of `js/trophies.js` (`secret: true` shows ??? until unlocked). Everything is saved in the visitor's own browser, so it can be edited by a determined visitor
+
+## Emotions (living text)
+
+Any line the bot says (config `DW.splash.lines`, `scolds`, lyrics, anything) can carry emotions. Put a tag in `<angle brackets>` before the words you want to change. The emotion lasts until the next tag, or until `<n>`.
+
+    HELLO <angry>WORLD              -> WORLD shakes and glows red
+    Hello <shy>world                -> tiny, trembling, typed slower
+    i am <sad>fine<n> really        -> only "fine" droops, then back to normal
+    wait for it <wait> <excited>NOW -> <wait> pauses the typing (<wait2> = twice as long)
+
+| tag | what it looks like | aliases |
+|---|---|---|
+| `<angry>` | red, shaking hard | mad, rage, furious |
+| `<shy>` | tiny, trembling, slow typing | timid, bashful |
+| `<sad>` | blue, drooping, slow typing | cry, down, blue |
+| `<happy>` | yellow, bouncing | joy, glad, yay |
+| `<excited>` | big, gold, jiggling, fast typing | hype, yippee |
+| `<scared>` | pale, shivering fast | afraid, fear, terrified |
+| `<whisper>` | tiny, faded, italic, slow | quiet, psst, secret |
+| `<yell>` | huge, pulsing, fast typing | loud, shout, scream |
+| `<sleepy>` | dim, swaying, very slow typing | tired, yawn, sleep |
+| `<love>` | pink, heartbeat | heart, crush, blush |
+| `<silly>` | wobbling, rainbow colours | goofy, wacky, derp |
+| `<spooky>` | purple glow, flickering | ghost, creepy, eerie |
+| `<dizzy>` | wavy | drunk, spin, wavy |
+| `<glitch>` | mono font, cyan/magenta split, twitching | error, bug, broken |
+| `<cold>` | icy blue, shivering | freeze, brr, chilly |
+| `<rich>` | gold, shimmering | gold, fancy, shiny |
+| `<sneaky>` | small, italic, sliding side to side | sly, plotting, smirk |
+| `<nervous>` | jittery | anxious, worried, sweat |
+| `<proud>` | gold, puffed up | smug, boast |
+| `<sing>` | blue, bobbing like a melody | music, melody, la |
+
+Reset with `<n>` (also `<normal>` or `</>`). Unknown tags are shown as plain text. Type `emotions` on the site to see the bot do every one of them. To add your own: add a row in `js/emotion.js` (name, typing speed, aliases) and a `.em-yourname` rule in `css/style.css`.
+
+## Every file you supply (names matter)
+- `audio/music1.mp3 ... music9.mp3` (the names in `DW.playlist`), `audio/trophy.mp3`, `audio/jumpscare.mp3`
+- `covers/music1.png ...` one cover per song, same name as the song
+- `video/intro.mp4`, `video/intro2.mp4` (the rare second intro)
+- `icons/eyes.png`, and `icons/bronze.png`, `silver.png`, `gold.png`, `plat.png`, `rare.png`, `locked.png` for the trophies
+- `icons/<id>.png` for each category and sub-category in `DW.menu` (identity, bio, manifesto, persona, projects, portfolio, archive, stack, gallery, art, audio, clips, writing, essays, notes, media, library, games, reviews, curation, favorites, playlists, inspirations, ideas, concepts, wishlists, mindset, opinions, lore, contact, reach-out, faq, locked)
+- `seasons/web.png`, `spider.png`, `jumpscare.png`, `tree.png`, `tree1.gif`, `tree2.gif`, `tree3.gif`
+- `og.png` (1200x630): the picture shown when the link is shared
+
+## Files
+`index.html`, `404.html`, `sw.js`, `CNAME`, `robots.txt`, `sitemap.xml`, `LICENSE`, `css/style.css`, `js/*.js`.
+
+## Going live (custom domain)
+- `CNAME` holds the custom domain. `robots.txt` and `sitemap.xml` are for Google
+- Site name and description for Google live in the `<title>`, the description and the JSON-LD block in `index.html`
+- GoatCounter: put your site code in `DW.counter.code` in `js/config.js`
 
 ## Changelog
-
-The CHANGELOG button in the top bar opens `js/changelog.js`. Add each new entry to the top of `C.entries`. Visitors see a blinking dot until they open the newest entry.
-
-The small version text next to DWEEB//OS is configured through the `<small>` element in `index.html`. During a seasonal event, it can show the season name instead; those labels are configured in `js/seasons.js`.
-
-When adding a release, consider documenting:
-
-- New features.
-- New games or game modes.
-- New trophies and achievements, without spoiling secret conditions.
-- Seasonal changes.
-- Accessibility or mobile improvements.
-- Bug fixes.
-- Configuration changes that site owners need to know about.
-- Any changed asset filenames or update instructions.
-
----
-
-*DWEEB//OS is a work in progress. Features, secrets, trophy triggers, and configuration options may change as the project evolves.*
+The CHANGELOG button in the top bar opens `js/changelog.js`. Add a new entry at the top of the `C.entries` list each time you update the site. Visitors see a blinking dot until they have opened the newest one. The small text next to DWEEB//OS is the `<small>` in `index.html`, and during a season it shows the season name instead (change those in `js/seasons.js`).
